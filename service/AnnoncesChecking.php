@@ -1,6 +1,8 @@
 <?php
 
 namespace service;
+use data\DataWriter;
+
 class AnnoncesChecking
 {
     protected $annoncesTxt;
@@ -28,7 +30,6 @@ class AnnoncesChecking
     public function getPost($id, $data)
     {
         $post = $data->getPost($id);
-
         $this->annoncesTxt[] = array('id' => $post->getId(), 'title' => $post->getTitle(), 'body' => $post->getBody(), 'date' => $post->getDate());
     }
 
@@ -53,5 +54,8 @@ class AnnoncesChecking
         return true;
     }
 
+    public function createUser($login, $pwd, $nom, $prenom, $dataWriter) {
+        $dataWriter->createUser($login, $pwd, $nom, $prenom);
+    }
 
 }

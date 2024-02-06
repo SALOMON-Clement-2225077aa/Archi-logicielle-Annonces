@@ -2,6 +2,7 @@
 
 // charge et initialise les bibliothèques globales
 include_once 'data/DataAccess.php';
+include_once 'data/DataWriter.php';
 
 include_once 'control/Controllers.php';
 include_once 'control/Presenter.php';
@@ -17,15 +18,18 @@ include_once 'gui/ViewPost.php';
 use control\Controllers;
 use control\Presenter;
 use data\DataAccess;
+use data\DataWriter;
 use gui\{Layout, ViewAnnonces, ViewLogin, ViewInscription, ViewPost};
 use service\AnnoncesChecking;
 
 $data = null;
+$dataWriter = null;
 try {
     $dsn = 'mysql:host=mysql-test789.alwaysdata.net;dbname=test789_valide';
     $username = 'test789';
     $password = 'mdpTest123';
     $data = new DataAccess(new PDO($dsn, $username, $password));
+    $dataWriter = new DataWriter(new PDO($dsn, $username, $password));
 
 } catch (PDOException $e) {
     print "Erreur de connexion test !: " . $e->getMessage() . "<br/>";
@@ -76,7 +80,7 @@ elseif ( '/annonces/index.php/inscription' == $uri) {
 elseif ( '/annonces/index.php/inscriptionCheck' == $uri) {
 
     $controller->inscriptionAction($_POST['login'], $_POST['password'],
-        $_POST['nom'], $_POST['prenom'], $data, $annoncesCheck);
+        $_POST['nom'], $_POST['prenom'], $data, $dataWriter, $annoncesCheck);
 }
 elseif ( '/annonces/index.php/post' == $uri
     && isset($_GET['id'])) {

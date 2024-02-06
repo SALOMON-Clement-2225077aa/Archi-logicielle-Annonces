@@ -48,9 +48,6 @@ class Controllers
 
         // Redirection et erreur en cas de problème
         if(!$isTitleOk) {
-            var_dump($title);
-            var_dump($isTitleOk);
-            die;
             header('Location: /annonces/index.php/createAnnonce?erreur=TitleNotOk');exit;
         }
         elseif(!$isContentOk) {

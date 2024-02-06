@@ -38,4 +38,20 @@ class AnnoncesChecking
         // Si $existingUser est null, le login est unique
         return ($existingUser === null);
     }
+
+    public function isPwdStrong($pwd) {
+        // Au moins 12 caractères :
+        if (strlen($pwd) < 12) {return false;}
+        // Au moins 1 lettre minuscule :
+        if (!preg_match('/[a-z]/', $pwd)) {return false;}
+        // Au moins 1 lettre majuscule :
+        if (!preg_match('/[A-Z]/', $pwd)) {return false;}
+        // Au moins 1 caractère chiffre :
+        if (!preg_match('/\d/', $pwd)) {return false;}
+        // Au moins 1 caractère Spécial :
+        if (!preg_match('/[@$!%*?&]/', $pwd)) {return false;}
+        return true;
+    }
+
+
 }

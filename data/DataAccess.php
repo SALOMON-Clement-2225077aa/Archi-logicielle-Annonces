@@ -69,17 +69,13 @@ class DataAccess implements DataAccessInterface
     public function getUserByLogin($login)
     {
         $user = null;
-
         $query = 'SELECT * FROM Users WHERE login="' . $login . '"';
         $result = $this->dataAccess->query($query);
-
         if ($result->rowCount()) {
             $row = $result->fetch();
-            $user = new User($row['login'], $row['password']); // Vous devez ajuster selon la structure réelle de votre base de données
+            $user = new User($row['login'], $row['password']);
         }
-
         $result->closeCursor();
-
         return $user;
     }
 }

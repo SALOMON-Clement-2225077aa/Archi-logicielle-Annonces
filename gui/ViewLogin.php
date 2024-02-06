@@ -13,10 +13,10 @@ class ViewLogin extends View
         $this->content = '
             <form method="post" action="/annonces/index.php/annonces">
                 <label for="login"> Votre identifiant </label> :
-                <input type="text" name="login" id="login" placeholder="defaut" maxlength="12" required />
-                <br />
+                <input type="text" name="login" id="login" placeholder="defaut" maxlength="50" required />
+                <br/>
                 <label for="password"> Votre mot de passe </label> :
-                <input type="password" name="password" id="password" maxlength="12" required />
+                <input type="password" name="password" id="password" minlength="12" maxlength="50" required />
         
                 <input type="submit" value="Envoyer">
                 

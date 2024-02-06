@@ -22,9 +22,15 @@ class DataWriter implements DataWriterInterface
     {
         $dateDuJour = date('Y-m-d');
         $query = 'INSERT INTO `Users` (`login`, `password`, `nom`, `prenom`, `dateCrea`) VALUES ("' . $login . '", "' . $pwd . '", "'. $nom .'", "'. $prenom .'", "'. $dateDuJour .'");';
-        $result = $this->dataWriter->query($query);
+        $this->dataWriter->query($query);
     }
 
+    public function createPost($title, $body)
+    {
+        $dateDuJour = date('Y-m-d');
+        $query = 'INSERT INTO `Post` (`date`, `title`, `body`) VALUES ("' . $dateDuJour . '", "' . $title . '", "' . $body .'");';
+        $this->dataWriter->query($query);
+    }
 
 }
 

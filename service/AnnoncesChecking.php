@@ -58,6 +58,14 @@ class AnnoncesChecking
         $dataWriter->createUser($login, $pwd, $nom, $prenom);
     }
 
+    public function isContentOk($userInput)
+    {
+        $isValid = preg_match('/^[a-zA-Z0-9\s.,!?()\'"éèàêôûîâäëïüöç]$/', $userInput);
+        return $isValid;
+    }
 
+    public function createPost($title, $content, $dataWriter) {
+        $dataWriter->createPost($title, $content);
+    }
 
 }

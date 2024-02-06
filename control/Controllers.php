@@ -38,8 +38,21 @@ class Controllers
 
     public function createPostAction($title, $content, $dataWriter, $annoncesChek)
     {
-        echo $title;
-        echo $content;
+        $isTitleOk = $annoncesChek->isContentOk($title);
+        $isContentOk = $annoncesChek->isContentOk($content);
+
+        // Redirection et erreur en cas de problème
+        if(!$isTitleOk) {
+            header('Location: /annonces/index.php/createAnnonce?erreur=TitleNotOk');exit;
+        }
+        elseif(!$isContentOk) {
+            header('Location: /annonces/index.php/createAnnonce?erreur=ContentNotok');exit;
+        }
+        else{
+            // Tout est bon, on crée le post :
+            $annoncesChek->createPost($title, $content, $dataWriter);
+            header('Location: /annonces/index.php');exit;
+        }
     }
 
 }

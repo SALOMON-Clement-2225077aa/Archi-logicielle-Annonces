@@ -10,6 +10,9 @@ class User
     {
         $this->login = $login;
         $this->password = $password;
+        session_start();
+        $_SESSION["login"] = $login;
+        $_SESSION["pwd"] = $password;
     }
 
     public function getLogin()

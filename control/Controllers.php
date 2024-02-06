@@ -40,6 +40,11 @@ class Controllers
     {
         $isTitleOk = $annoncesChek->isContentOk($title);
         $isContentOk = $annoncesChek->isContentOk($content);
+        $login = "";
+        session_start();
+        if(isset($_SESSION["login"])) {
+            $login = $_SESSION["login"];
+        }
 
         // Redirection et erreur en cas de problème
         if(!$isTitleOk) {
@@ -53,7 +58,7 @@ class Controllers
         }
         else{
             // Tout est bon, on crée le post :
-            $annoncesChek->createPost($title, $content, $dataWriter);
+            $annoncesChek->createPost($title, $content, $login, $dataWriter);
             header('Location: /annonces/index.php');exit;
         }
     }

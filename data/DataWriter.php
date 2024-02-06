@@ -25,10 +25,10 @@ class DataWriter implements DataWriterInterface
         $this->dataWriter->query($query);
     }
 
-    public function createPost($title, $body)
+    public function createPost($title, $body, $user)
     {
         $dateDuJour = date('Y-m-d');
-        $query = 'INSERT INTO `Post` (`date`, `title`, `body`) VALUES ("' . $dateDuJour . '", "' . $title . '", "' . $body .'");';
+        $query = 'INSERT INTO `Post` (`date`, `title`, `body`, `User`) VALUES ("' . $dateDuJour . '", "' . $title . '", "' . $body . '", "' . $user .'");';
         $this->dataWriter->query($query);
     }
 

@@ -65,10 +65,8 @@ class AnnoncesChecking
         return true;
     }
 
-
-
-    public function createPost($title, $content, $dataWriter) {
-        $dataWriter->createPost($title, $content);
+    public function createPost($title, $content, $login, $dataWriter) {
+        $dataWriter->createPost($title, $content, $login);
     }
 
 }

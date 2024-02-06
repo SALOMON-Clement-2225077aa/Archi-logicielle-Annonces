@@ -8,4 +8,6 @@ interface DataAccessInterface
     public function getAllAnnonces();
 
     public function getPost($id);
+
+    public function getUserByLogin($login);
 }

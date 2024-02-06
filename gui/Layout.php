@@ -16,8 +16,7 @@ class Layout
             $menu = '<nav>
                         <ul>
                             <li><a href="/annonces/index.php">Page de connexion</a></li>
-                            <li><a href="/annonces/index.php/annonces">Les annonces</a></li>
-                            <li><a href="/annonces/index.php/post">Poster une annonce</a></li>
+                            <li><a href="/annonces/index.php/createAnnonce">Poster une annonce</a></li>
                         </ul>
                     </nav>';
         }

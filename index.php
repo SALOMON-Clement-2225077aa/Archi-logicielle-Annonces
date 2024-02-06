@@ -12,6 +12,7 @@ include_once 'service/AnnoncesChecking.php';
 include_once 'gui/Layout.php';
 include_once 'gui/ViewLogin.php';
 include_once 'gui/ViewInscription.php';
+include_once 'gui/ViewCreatePost.php';
 include_once 'gui/ViewAnnonces.php';
 include_once 'gui/ViewPost.php';
 
@@ -19,7 +20,7 @@ use control\Controllers;
 use control\Presenter;
 use data\DataAccess;
 use data\DataWriter;
-use gui\{Layout, ViewAnnonces, ViewLogin, ViewInscription, ViewPost};
+use gui\{Layout, ViewAnnonces, ViewLogin, ViewInscription, ViewCreatePost, ViewPost};
 use service\AnnoncesChecking;
 
 $data = null;
@@ -58,9 +59,10 @@ if ( '/annonces/' == $uri || '/annonces/index.php' == $uri) {
 
     $vueLogin->display();
 }
-elseif ( '/annonces/index.php/annonces' == $uri
-    && isset($_POST['login']) && isset($_POST['password']) ){
-
+elseif ('/annonces/index.php/annonces' == $uri
+    && ( (isset($_POST['login']) && isset($_POST['password']))
+    ||   (isset($_SESSION["login"]) && isset($_SESSION["pwd"])) ))
+{
     $controller->annoncesAction($_POST['login'], $_POST['password'], $data, $annoncesCheck);
 
     $layout = new Layout("gui/layout.html" );
@@ -81,6 +83,18 @@ elseif ( '/annonces/index.php/inscriptionCheck' == $uri) {
 
     $controller->inscriptionAction($_POST['login'], $_POST['password'],
         $_POST['nom'], $_POST['prenom'], $data, $dataWriter, $annoncesCheck);
+}
+// TP1 CREER POST crea  :
+elseif ( '/annonces/index.php/createAnnonce' == $uri) {
+
+    $layout = new Layout("gui/layout.html" );
+    $vuePost= new ViewCreatePost($layout);
+
+    $vuePost->display();
+}
+// TP1 CREER POST verif :
+elseif ( '/annonces/index.php/verifAnnonce' == $uri) {
+    $controller->createPostAction($_POST['title'], $_POST['content'], $dataWriter, $annoncesCheck);
 }
 elseif ( '/annonces/index.php/post' == $uri
     && isset($_GET['id'])) {

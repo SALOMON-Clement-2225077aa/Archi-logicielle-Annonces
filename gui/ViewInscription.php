@@ -8,7 +8,7 @@ class ViewInscription extends View
     {
         parent::__construct($layout);
 
-        $this->title = 'Exemple Annonces Basic PHP: Connexion';
+        $this->title = 'Exemple Annonces Basic PHP: Inscription';
 
         $this->content = '
             <label>Veuillez remplir le formulaire ci dessous pour créer votre compte :</label>
@@ -17,7 +17,7 @@ class ViewInscription extends View
             <form method="post" action="/annonces/index.php/inscriptionCheck">
                 <!-- Login et Mdp -->
                 <label for="login"> <b>login</b> </label> :
-                <input type="text" name="login" id="login" placeholder="id unique" minlength="3" minlength="50" required />
+                <input type="text" name="login" id="login" placeholder="id unique" minlength="3" maxlength="50" required />
                 <br/>
                 <label for="password"> <b>Votre mot de passe fort</b> </label> : 
                 <input type="password" name="password" id="password" minlength="12" maxlength="50" required /> <br>

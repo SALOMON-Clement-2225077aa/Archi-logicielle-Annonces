@@ -36,5 +36,10 @@ class Controllers
         }
     }
 
+    public function createPostAction($title, $content, $dataWriter, $annoncesChek)
+    {
+        echo $title;
+        echo $content;
+    }
 
 }

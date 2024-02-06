@@ -58,4 +58,6 @@ class AnnoncesChecking
         $dataWriter->createUser($login, $pwd, $nom, $prenom);
     }
 
+
+
 }

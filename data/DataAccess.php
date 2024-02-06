@@ -40,7 +40,7 @@ class DataAccess implements DataAccessInterface
 
     public function getAllAnnonces()
     {
-        $result = $this->dataAccess->query('SELECT * FROM Post');
+        $result = $this->dataAccess->query('SELECT * FROM Post ORDER BY date DESC');
         $annonces = array();
 
         while ($row = $result->fetch()) {

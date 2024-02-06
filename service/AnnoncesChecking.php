@@ -1,7 +1,6 @@
 <?php
 
 namespace service;
-use data\DataWriter;
 
 class AnnoncesChecking
 {
@@ -60,9 +59,13 @@ class AnnoncesChecking
 
     public function isContentOk($userInput)
     {
-        $isValid = preg_match('/^[a-zA-Z0-9\s.,!?()\'"éèàêôûîâäëïüöç]$/', $userInput);
-        return $isValid;
+        if (preg_match('/[<>(`)&~#|\\^¤µ%]/', $userInput)) {
+            return false;
+        }
+        return true;
     }
+
+
 
     public function createPost($title, $content, $dataWriter) {
         $dataWriter->createPost($title, $content);

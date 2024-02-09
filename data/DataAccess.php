@@ -78,6 +78,21 @@ class DataAccess implements DataAccessInterface
         $result->closeCursor();
         return $user;
     }
+
+    public function isAdmin($username)
+    {
+        try {
+            $query = "SELECT isAdmin FROM Users WHERE username = ". $username;
+            $result = $this->dataAccess->query($query);
+            if ($result && $result['isAdmin'] == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            throw new PDOException("Error checking admin status: " . $e->getMessage());
+        }
+    }
 }
 
 ?>

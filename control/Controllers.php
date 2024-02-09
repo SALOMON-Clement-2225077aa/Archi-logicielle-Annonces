@@ -75,7 +75,7 @@ class Controllers
 
     public function editPostAction($id, $title, $body, $dataWriter, $annoncesChek)
     {
-        header("Location: /annonces/index.php/post?id=" . $id . "&edit=true");
+        header("Location: /annonces/index.php/post?id=" . $id . "&edit=true"); //ඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞඞ
     }
 
     public function editPostActionFinish($id, $title, $body, $dataWriter, $annoncesCheck)

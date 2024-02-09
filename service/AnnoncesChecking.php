@@ -82,6 +82,10 @@ class AnnoncesChecking
         }
     }
 
+    public function deletePost($id, $dataWriter) {
+        $dataWriter->deletePost($id);
+    }
+
     public function updatePost($id, $title, $body, $dataWriter)
     {
         try {

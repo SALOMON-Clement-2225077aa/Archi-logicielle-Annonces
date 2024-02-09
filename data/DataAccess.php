@@ -4,25 +4,47 @@ namespace data;
 use service\DataAccessInterface;
 include_once "service/DataAccessInterface.php";
 
-use domain\{User,Post};
+use domain\{User, Post};
 require_once "domain/User.php";
 require_once "domain/Post.php";
 
-
+/**
+ * Classe DataAccess
+ *
+ * Cette classe gère l'accès aux données.
+ */
 class DataAccess implements DataAccessInterface
 {
+    /**
+     * @var object $dataAccess L'objet pour accéder aux données
+     */
     protected $dataAccess = null;
 
+    /**
+     * Constructeur de la classe DataAccess
+     *
+     * @param object $dataAcess L'objet pour accéder aux données
+     */
     public function __construct($dataAcess)
     {
         $this->dataAccess = $dataAcess;
     }
 
+    /**
+     * Destructeur de la classe DataAccess
+     */
     public function __destruct()
     {
         $this->dataAccess = null;
     }
 
+    /**
+     * Récupère un utilisateur en fonction de son login et de son mot de passe
+     *
+     * @param string $login Le nom d'utilisateur
+     * @param string $password Le mot de passe
+     * @return object|null L'objet User correspondant à l'utilisateur s'il existe, sinon null
+     */
     public function getUser($login, $password)
     {
         $user = null;
@@ -38,6 +60,11 @@ class DataAccess implements DataAccessInterface
         return $user;
     }
 
+    /**
+     * Récupère toutes les annonces
+     *
+     * @return array Un tableau d'objets Post représentant les annonces
+     */
     public function getAllAnnonces()
     {
         $result = $this->dataAccess->query('SELECT * FROM Post ORDER BY date DESC');
@@ -53,6 +80,12 @@ class DataAccess implements DataAccessInterface
         return $annonces;
     }
 
+    /**
+     * Récupère un post en fonction de son identifiant
+     *
+     * @param int $id L'identifiant du post
+     * @return object|null L'objet Post correspondant au post s'il existe, sinon null
+     */
     public function getPost($id)
     {
         $id = intval($id);
@@ -66,6 +99,12 @@ class DataAccess implements DataAccessInterface
         return $post;
     }
 
+    /**
+     * Récupère un utilisateur en fonction de son login
+     *
+     * @param string $login Le nom d'utilisateur
+     * @return object|null L'objet User correspondant à l'utilisateur s'il existe, sinon null
+     */
     public function getUserByLogin($login)
     {
         $user = null;
@@ -79,6 +118,12 @@ class DataAccess implements DataAccessInterface
         return $user;
     }
 
+    /**
+     * Vérifie si un utilisateur est administrateur
+     *
+     * @param string $username Le nom d'utilisateur
+     * @return bool True si l'utilisateur est administrateur, sinon false
+     */
     public function isAdmin($username)
     {
         try {

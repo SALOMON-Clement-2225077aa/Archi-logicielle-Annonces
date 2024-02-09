@@ -1,15 +1,37 @@
 <?php
+
 namespace gui;
+
+/**
+ * Classe Layout
+ *
+ * Cette classe gère la mise en page.
+ */
 class Layout
 {
+    /**
+     * @var string Le chemin vers le fichier de modèle de mise en page
+     */
     protected $templateFile;
 
-    public function __construct( $templateFile )
+    /**
+     * Constructeur de la classe Layout
+     *
+     * @param string $templateFile Le chemin vers le fichier de modèle de mise en page
+     */
+    public function __construct($templateFile)
     {
         $this->templateFile = $templateFile;
     }
 
-    public function display( $title, $content )
+    /**
+     * Affiche la mise en page avec le titre, le contenu et le menu
+     *
+     * @param string $title Le titre de la page
+     * @param string $content Le contenu de la page
+     * @return void
+     */
+    public function display($title, $content)
     {
         $menu = "";
         if (isset($_SESSION["login"]) && isset($_SESSION["pwd"])) {
@@ -20,9 +42,8 @@ class Layout
                         </ul>
                     </nav>';
         }
-        $page = file_get_contents( $this->templateFile );
-        $page = str_replace( ['%title%','%content%','%menu%'], [$title,$content,$menu], $page);
+        $page = file_get_contents($this->templateFile);
+        $page = str_replace(['%title%', '%content%', '%menu%'], [$title, $content, $menu], $page);
         echo $page;
     }
-
 }

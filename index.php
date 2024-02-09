@@ -102,6 +102,18 @@ elseif ( '/annonces/index.php/deletePost' == $uri) {
     $id = $_GET['id'];
     $controller->deletePostAction($id,$_SESSION['login'],$data,$dataWriter, $annoncesCheck);
 }
+// Partiel édit un post :
+elseif ( '/annonces/index.php/editPost' == $uri) {
+    $id = $_GET['id'];
+    $controller->editPostAction($id,$_SESSION['login'],$data,$dataWriter, $annoncesCheck);
+}
+// Partiel édit un post :
+elseif ('/annonces/index.php/editPostFinish' == $uri) {
+    $id = $_POST['id'];
+    $title = $_POST['title'];
+    $body = $_POST['body'];
+    $controller->editPostActionFinish($id, $title, $body, $dataWriter, $annoncesCheck);
+}
 elseif ( '/annonces/index.php/post' == $uri
     && isset($_GET['id'])) {
 

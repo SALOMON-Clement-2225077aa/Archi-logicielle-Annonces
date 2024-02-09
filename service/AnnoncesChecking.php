@@ -29,7 +29,7 @@ class AnnoncesChecking
     public function getPost($id, $data)
     {
         $post = $data->getPost($id);
-        $this->annoncesTxt[] = array('id' => $post->getId(), 'title' => $post->getTitle(), 'body' => $post->getBody(), 'date' => $post->getDate());
+        $this->annoncesTxt[] = array('id' => $post->getId(), 'title' => $post->getTitle(), 'body' => $post->getBody(), 'date' => $post->getDate(), 'User' => $post->getUser());
     }
 
     public function isLoginUnique($login, $data)
@@ -82,8 +82,14 @@ class AnnoncesChecking
         }
     }
 
-    public function deletePost($id, $dataWriter) {
-        $dataWriter->deletePost($id);
+    public function updatePost($id, $title, $body, $dataWriter)
+    {
+        try {
+            $dataWriter->updatePost($id, $title, $body);
+        } catch (Exception $e) {
+            throw new Exception("Error updating post: " . $e->getMessage());
+        }
     }
+
 
 }

@@ -42,6 +42,18 @@ class DataWriter implements DataWriterInterface
         }
     }
 
+    public function updatePost($id, $title, $body)
+    {
+        try {
+            $query = "UPDATE Post SET title = '" . htmlspecialchars($title) . "', body = '" . htmlspecialchars($body) . "' WHERE id = " . $id;
+            var_dump($query);
+            $this->dataWriter->query($query);
+        } catch (PDOException $e) {
+            throw new Exception("Error updating post: " . $e->getMessage());
+        }
+    }
+
+
 }
 
 ?>

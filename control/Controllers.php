@@ -73,4 +73,21 @@ class Controllers
         }
     }
 
+    public function editPostAction($id, $title, $body, $dataWriter, $annoncesChek)
+    {
+        header("Location: /annonces/index.php/post?id=" . $id . "&edit=true");
+    }
+
+    public function editPostActionFinish($id, $title, $body, $dataWriter, $annoncesCheck)
+    {
+        try {
+            $dataWriter->updatePost($id, $title, $body);
+            echo "Post updated successfully.";
+            header('Location: /annonces/index.php');exit;
+        } catch (Exception $e) {
+            echo "Error updating post: " . $e->getMessage();
+        }
+    }
+
+
 }

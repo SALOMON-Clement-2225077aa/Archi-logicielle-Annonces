@@ -23,6 +23,7 @@ use data\DataWriter;
 use gui\{Layout, ViewAnnonces, ViewLogin, ViewInscription, ViewCreatePost, ViewPost};
 use service\AnnoncesChecking;
 
+session_start();
 $data = null;
 $dataWriter = null;
 try {
@@ -95,6 +96,11 @@ elseif ( '/annonces/index.php/createAnnonce' == $uri) {
 // TP1 CREER POST verif :
 elseif ( '/annonces/index.php/verifAnnonce' == $uri) {
     $controller->createPostAction($_POST['title'], $_POST['content'], $dataWriter, $annoncesCheck);
+}
+// Partiel Supprimer un post :
+elseif ( '/annonces/index.php/deletePost' == $uri) {
+    $id = $_GET['id'];
+    $controller->deletePostAction($id,$_SESSION['login'],$data,$dataWriter, $annoncesCheck);
 }
 elseif ( '/annonces/index.php/post' == $uri
     && isset($_GET['id'])) {

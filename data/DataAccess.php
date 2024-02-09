@@ -44,7 +44,7 @@ class DataAccess implements DataAccessInterface
         $annonces = array();
 
         while ($row = $result->fetch()) {
-            $currentPost = new Post($row['id'], $row['title'], $row['body'], $row['date']);
+            $currentPost = new Post($row['id'], $row['title'], $row['body'], $row['date'], $row['User']);
             $annonces[] = $currentPost;
         }
 
@@ -59,7 +59,7 @@ class DataAccess implements DataAccessInterface
         $result = $this->dataAccess->query('SELECT * FROM Post WHERE id=' . $id);
         $row = $result->fetch();
 
-        $post = new Post($row['id'], $row['title'], $row['body'], $row['date']);
+        $post = new Post($row['id'], $row['title'], $row['body'], $row['date'], $row['User']);
 
         $result->closeCursor();
 

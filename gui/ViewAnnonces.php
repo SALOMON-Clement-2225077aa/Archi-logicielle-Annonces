@@ -16,7 +16,6 @@ class ViewAnnonces extends View
 
         $this->content = "<p> Hello $login </p>";
 
-
         $this->content.= $presenter->getAllAnnoncesHTML();
     }
 }

@@ -17,7 +17,10 @@ class Presenter
             $content = '<h1>List of Posts</h1>  <ul>';
             foreach ($this->annoncesCheck->getAnnoncesTxt() as $post) {
                 $content .= ' <li>';
-                $content .= '<a href="/annonces/index.php/post?id=' . $post['id'] . '">' . $post['title'] . ' - ' . $post['date'] . '</a>';
+                $content .= '<a href="/annonces/index.php/post?id=' . $post['id'] . '">' . $post['title'] . ' - ' . $post['date'] . ' - Posté par ' . $post['User'] . '</a>';
+                if ($post['User'] == $_SESSION['login']) {
+                    $content .= '<br><button onclick="window.location.href=\'/annonces/index.php/deletePost?id=' . $post['id'] . '\'" style="background-color: red; color: white">supprimer votre annonce</button>';
+                }
                 $content .= ' </li>';
             }
             $content .= '</ul>';

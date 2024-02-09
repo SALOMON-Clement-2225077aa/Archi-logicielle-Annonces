@@ -22,7 +22,7 @@ class AnnoncesChecking
 
         $this->annoncesTxt = array();
         foreach ($annonces as $post) {
-            $this->annoncesTxt[] = ['id' => $post->getId(), 'title' => $post->getTitle(), 'body' => $post->getBody(), 'date' => $post->getDate()];
+            $this->annoncesTxt[] = ['id' => $post->getId(), 'title' => $post->getTitle(), 'body' => $post->getBody(), 'date' => $post->getDate(), 'User' => $post->getUser()];
         }
     }
 
@@ -67,6 +67,23 @@ class AnnoncesChecking
 
     public function createPost($title, $content, $login, $dataWriter) {
         $dataWriter->createPost($title, $content, $login);
+    }
+
+    public function canDelete($id, $login, $data) {
+        try {
+            $post = $data->getPost($id);
+            if ($post && $post->getUser() == $login) {
+                return true; // The user can delete the post
+            } else {
+                return false; // The user cannot
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function deletePost($id, $dataWriter) {
+        $dataWriter->deletePost($id);
     }
 
 }

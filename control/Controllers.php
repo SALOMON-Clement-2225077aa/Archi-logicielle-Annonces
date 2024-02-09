@@ -32,7 +32,7 @@ class Controllers
         else{
             // Tout est bon, on crée le compte :
             $annoncesChek->createUser($login, $pwd, $nom, $prenom, $dataWriter);
-            header('Location: /annonces/index.php');exit;
+            header('Location: /annonces/index.php?compte_crée!');exit;
         }
     }
 
@@ -57,6 +57,19 @@ class Controllers
             // Tout est bon, on crée le post :
             $annoncesChek->createPost($title, $content, $login, $dataWriter);
             header('Location: /annonces/index.php');exit;
+        }
+    }
+
+    public function deletePostAction($id, $login, $data, $dataWriter, $annoncesChek)
+    {
+        # On vérifie que c'est le propriétaire de l'annonce qui fait la demande de suppr
+        $canDelete = $annoncesChek->canDelete($id, $login, $data);
+        if($canDelete) {
+            $annoncesChek->deletePost($id, $dataWriter);
+            header('Location: /annonces/index.php?annonce_supprimé!');exit;
+        }
+        else{
+            echo 'Vous n\'êtes pas autorisé à supprimer ce post';
         }
     }
 

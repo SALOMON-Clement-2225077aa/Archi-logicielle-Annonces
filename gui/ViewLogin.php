@@ -23,6 +23,7 @@ class ViewLogin extends View
                 <br><br>
                 <label>Pas de compte ?</label>
                 <a href="/annonces/index.php/inscription">Inscrivez-vous</a>
+                
             </form>';
     }
 

@@ -32,6 +32,16 @@ class DataWriter implements DataWriterInterface
         $this->dataWriter->query($query);
     }
 
+    public function deletePost($id) {
+        try {
+            $query = 'DELETE FROM `Post` WHERE `id` = ' . $id;
+            $this->dataWriter->query($query);
+        } catch (PDOException $e) {
+            // Handle any database errors
+            echo "Error deleting post: " . $e->getMessage();
+        }
+    }
+
 }
 
 ?>
